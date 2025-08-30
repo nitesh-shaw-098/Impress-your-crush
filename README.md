@@ -30,7 +30,7 @@ Make a cute, fun, and interactive web page to impress your crush — share a pla
 
 | Desktop | Mobile |
 |---|---|
-| ![Desktop Preview](preview_pc.png) | ![Mobile Preview](preview_mobile.png) |
+| ![Desktop Preview](preview_pc.png) | ![Mobile Preview](preview_mobile.jpg) |
 
 ### How to add screenshots here
 1. Create an `assets/` folder at the project root (if it doesn’t exist).
@@ -62,4 +62,5 @@ python -m http.server 5500
 
 #   Node (if installed)
 npx serve .
+
 
