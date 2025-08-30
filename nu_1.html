@@ -6,6 +6,64 @@
     <title>Ask Her Out</title>
 
     <link rel="stylesheet" href="./stylesheet.css" />
+    <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff4e50, #fc913a, #f9d423, #00c9ff, #92fe9d);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .equation {
+      position: absolute;
+      font-size: 20px;
+      color: rgba(255,255,255,0.95);
+      font-family: "Comic Sans MS", cursive, sans-serif;
+      animation: floatEq 9s ease-in-out infinite;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    @keyframes floatEq {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      50% { transform: translateY(50vh) rotate(20deg); opacity: 0.8; }
+      100% { transform: translateY(-20vh) rotate(-20deg); opacity: 0; }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 36px;
+      opacity: 0.95;
+    }
+
+    .happy {
+      animation: floatHappy 7s ease-in-out infinite;
+    }
+
+    .angry {
+      animation: floatAngry 4s cubic-bezier(.36,.07,.57,.99) infinite;
+    }
+
+    @keyframes floatHappy {
+      0% { transform: translateY(100vh) scale(1); opacity: 1; }
+      50% { transform: translateY(50vh) scale(1.3); opacity: 0.8; }
+      100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+    }
+
+    @keyframes floatAngry {
+      0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 1; }
+      25% { transform: translateY(70vh) rotate(15deg) scale(1.2); }
+      50% { transform: translateY(40vh) rotate(-15deg) scale(0.9); opacity: 0.9; }
+      75% { transform: translateY(10vh) rotate(20deg) scale(1.4); }
+      100% { transform: translateY(-20vh) rotate(-10deg) scale(1); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
     <div class="container">
@@ -33,5 +91,55 @@
             <a href="nu_2.html">No</a>
         </div>
     </div>
+    <script>
+    // Happy vs Angry equations
+    const equations = [
+      "love + joy = 😂",
+      "trust × care = 😍",
+      "Σ(happiness) = 🎉",
+      "love - trust = 💔",
+      "tan(😡) = rage",
+      "anger² + chaos = 🤬",
+      "lim patience→0 = 💢"
+    ];
+
+    function createEquation() {
+      const eq = document.createElement("div");
+      eq.classList.add("equation");
+      eq.innerText = equations[Math.floor(Math.random() * equations.length)];
+      eq.style.left = Math.random() * 90 + "vw";
+      eq.style.animationDuration = 6 + Math.random() * 6 + "s";
+      document.body.appendChild(eq);
+
+      setTimeout(() => eq.remove(), 12000);
+    }
+
+    setInterval(createEquation, 1800);
+
+    // Emojis
+    const happyEmojis = ["😂","😍","🎉","🥳","🌈","✨"];
+    const angryEmojis = ["😡","🤬","😤","👿","💢"];
+
+    function createEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+
+      // 50% happy, 50% angry
+      if (Math.random() > 0.5) {
+        emoji.innerText = happyEmojis[Math.floor(Math.random() * happyEmojis.length)];
+        emoji.classList.add("happy");
+      } else {
+        emoji.innerText = angryEmojis[Math.floor(Math.random() * angryEmojis.length)];
+        emoji.classList.add("angry");
+      }
+
+      emoji.style.left = Math.random() * 95 + "vw";
+      document.body.appendChild(emoji);
+
+      setTimeout(() => emoji.remove(), 10000);
+    }
+
+    setInterval(createEmoji, 900);
+  </script>
 </body>
 </html>
