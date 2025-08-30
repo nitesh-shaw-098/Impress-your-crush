@@ -6,6 +6,48 @@
     <title>Ask Her Out</title>
 
     <link rel="stylesheet" href="./stylesheet.css" />
+     <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+      background-size: 400% 400%;
+      animation: gradientShift 12s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .equation {
+      position: absolute;
+      font-size: 18px;
+      color: rgba(255,255,255,0.9);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      animation: floatEq 10s ease-in-out infinite;
+    }
+
+    @keyframes floatEq {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+      50% { transform: translateY(50vh) rotate(20deg); opacity: 0.8; }
+      100% { transform: translateY(-20vh) rotate(-20deg); opacity: 0; }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 32px;
+      animation: floatEmoji 8s ease-in-out infinite;
+      opacity: 0.95;
+    }
+
+    @keyframes floatEmoji {
+      0% { transform: translateY(100vh) scale(1); opacity: 1; }
+      50% { transform: translateY(50vh) scale(1.3); opacity: 0.8; }
+      100% { transform: translateY(-20vh) scale(1); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
     <div class="container">
@@ -39,5 +81,45 @@
     </div>
 
     <script src="./javascript.js"></script>
+    <script>
+    // Silly "happy but confusing" equations
+    const equations = [
+      "love + pizza = happiness²",
+      "∫ fun dx = 😂",
+      "Σ(confusion) = 🤯",
+      "tan(🥰) = 🎉",
+      "e^(party) = 🎂",
+      "lim fun→∞ 😍",
+      "x² + y² = 🎶"
+    ];
+
+    function createEquation() {
+      const eq = document.createElement("div");
+      eq.classList.add("equation");
+      eq.innerText = equations[Math.floor(Math.random() * equations.length)];
+      eq.style.left = Math.random() * 90 + "vw";
+      eq.style.animationDuration = 6 + Math.random() * 6 + "s";
+      document.body.appendChild(eq);
+
+      setTimeout(() => eq.remove(), 12000);
+    }
+
+    setInterval(createEquation, 1500);
+
+    // Happy + confused emojis
+    const emojis = ["😂","😍","🎉","✨","🥳","🌈","🤔","😵","😅","🙃","😕"];
+    function createEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 95 + "vw";
+      emoji.style.animationDuration = 5 + Math.random() * 6 + "s";
+      document.body.appendChild(emoji);
+
+      setTimeout(() => emoji.remove(), 10000);
+    }
+
+    setInterval(createEmoji, 1000);
+  </script>
 </body>
 </html>
