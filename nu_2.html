@@ -6,6 +6,50 @@
     <title>Ask Her Out</title>
 
     <link rel="stylesheet" href="./stylesheet.css" />
+     <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(circle at center, #f73232, #f3e2e2, #ce3030);
+    }
+
+    .equation {
+      position: absolute;
+      font-size: 18px;
+      color: rgba(180,180,255,0.6);
+      font-family: 'Courier New', monospace;
+      animation: floatEq 14s linear infinite;
+    }
+
+    @keyframes floatEq {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .emoji {
+      position: absolute;
+      font-size: 30px;
+      animation: floatEmoji 11s linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes floatEmoji {
+      0% {
+        transform: translateY(100vh) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-20vh) scale(0.9);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
     <div class="container">
@@ -35,5 +79,45 @@
         <a href="nu_3.html">No</a>
     </div>
     </div>
+    <script>
+    // Sad equations
+    const equations = [
+      "lim love → 0",
+      "d(heart)/dt < 0",
+      "love² - hope² = pain²",
+      "∫ broken dx = 💔",
+      "f(life) = tears",
+      "Σ(sadness) = ∞"
+    ];
+
+    function createEquation() {
+      const eq = document.createElement("div");
+      eq.classList.add("equation");
+      eq.innerText = equations[Math.floor(Math.random() * equations.length)];
+      eq.style.left = Math.random() * 90 + "vw";
+      eq.style.animationDuration = 9 + Math.random() * 6 + "s";
+      document.body.appendChild(eq);
+
+      setTimeout(() => eq.remove(), 16000);
+    }
+
+    setInterval(createEquation, 2200);
+
+    // Sad emojis
+    const emojis = ["💔","😢","🥀","😭","🖤","😞","😔"];
+    function createEmoji() {
+      const emoji = document.createElement("div");
+      emoji.classList.add("emoji");
+      emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = Math.random() * 95 + "vw";
+      emoji.style.animationDuration = 8 + Math.random() * 6 + "s";
+      document.body.appendChild(emoji);
+
+      setTimeout(() => emoji.remove(), 14000);
+    }
+
+    setInterval(createEmoji, 1800);
+  </script>
+
 </body>
 </html>
